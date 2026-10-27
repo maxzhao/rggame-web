@@ -4,7 +4,7 @@
 // Incrementing CACHE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
 /** @type {string} */
-const CACHE_VERSION = '1793069120|4634488';
+const CACHE_VERSION = '86cd1aed8e5f7302c708c23a83ab405689ee202b027c19a5c0598ae84ed1d851';
 /** @type {string} */
 const CACHE_PREFIX = 'rggame-sw-cache-';
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;
@@ -17,11 +17,11 @@ const ENSURE_CROSSORIGIN_ISOLATION_HEADERS = true;
 const CACHED_FILES = ["rggame.html","rggame.js","rggame.offline.html","rggame.icon.png","rggame.apple-touch-icon.png","rggame.audio.worklet.js","rggame.audio.position.worklet.js"];
 // Files that we might not want the user to preload, and will only be cached on first load.
 /** @type {string[]} */
-const CACHEABLE_FILES = ["rggame.wasm","rggame.pck"];
+const CACHEABLE_FILES = ["rggame.wasm","rggame.86cd1aed8e5f.pck"];
 const FULL_CACHE = CACHED_FILES.concat(CACHEABLE_FILES);
 
 self.addEventListener('install', (event) => {
-	event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(CACHED_FILES)));
+	event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(CACHED_FILES)).then(() => self.skipWaiting()));
 });
 
 self.addEventListener('activate', (event) => {
@@ -33,7 +33,7 @@ self.addEventListener('activate', (event) => {
 	).then(function () {
 		// Enable navigation preload if available.
 		return ('navigationPreload' in self.registration) ? self.registration.navigationPreload.enable() : Promise.resolve();
-	}));
+	}).then(() => self.clients.claim()));
 });
 
 /**
