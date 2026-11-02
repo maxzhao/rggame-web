@@ -4,7 +4,7 @@
 // Incrementing CACHE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
 /** @type {string} */
-const CACHE_VERSION = 'b4a79082d312a9614e841e38580c0b22263a47aaa92c17640e9f248d123bf7b3';
+const CACHE_VERSION = '01fcd7d31c9cf163c0f690cbc463bf480c1ac3e2bd4dbc6bc07e9de1871a99b6';
 /** @type {string} */
 const CACHE_PREFIX = 'rggame-sw-cache-';
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;
@@ -17,7 +17,7 @@ const ENSURE_CROSSORIGIN_ISOLATION_HEADERS = true;
 const CACHED_FILES = ["rggame.html","rggame.js","rggame.offline.html","rggame.icon.png","rggame.apple-touch-icon.png","rggame.audio.worklet.js","rggame.audio.position.worklet.js"];
 // Files that we might not want the user to preload, and will only be cached on first load.
 /** @type {string[]} */
-const CACHEABLE_FILES = ["rggame.wasm","rggame.b4a79082d312.pck"];
+const CACHEABLE_FILES = ["rggame.wasm","rggame.01fcd7d31c9c.pck"];
 const FULL_CACHE = CACHED_FILES.concat(CACHEABLE_FILES);
 
 self.addEventListener('install', (event) => {
